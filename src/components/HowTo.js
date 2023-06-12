@@ -6,62 +6,60 @@ import { FaSkullCrossbones, FaHeart } from 'react-icons/fa';
 import { GiCrossMark } from 'react-icons/gi';
 import { BsShieldFillX } from 'react-icons/bs';
 
-const HowTo = ({setEnableOverflow}) => {
+const HowTo = ({ setEnableOverflow }) => {
     const [toDisplay, setToDisplay] = useState(false);
     useEffect(() => {
         setEnableOverflow(toDisplay);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [toDisplay])
+// eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [toDisplay]);
     return (
         <>
             <MdLiveHelp className='help--ic' onClick={() => { setToDisplay(prev => !prev) }} />
             {toDisplay &&
-                <div className='how-to animate__animated animate__fadeIn'>
-                    <div className='how-to--arrangement'>
-                        <h1>Ship Arrangement</h1>
-                        <div className='how-to--wrapper'>
-                            <img src={arrangement_img} className='how-to--img arrangement-img' alt='arrangement' />
-                            <div className='how-to--content'>
-                                <p>
-                                The first thing is to place your ship on the board. There are two ways to place the ship.
-                                </p>
-                                <ul className='center'>
-                                    <li className='highlight'>Drag And Drop</li>
-                                    <li className='highlight'>Randomize</li>
-                                </ul>
-                                <p className='highlight'>
-                                    Rules to place a Ship
-                                </p>
-                                <ul>
-                                    <li>You can place your ship either horizontally or vertically. Diagonal placement is not allowed.</li>
-                                    <li>You cannot place your ship to the next grid of an already placed ship.</li>
-                                </ul>
-                                <p className='highlight'>* Drag and Drop is not supported for mobile. So kindly use randomize option to place the ship.</p>
-                            </div>
+            <div className='how-to animate__animated animate__fadeIn'>
+                <div className='how-to--arrangement'>
+                    <h1>Розстановка кораблів</h1>
+                    <div className='how-to--wrapper'>
+                        <img src={arrangement_img} className='how-to--img arrangement-img' alt='arrangement' />
+                        <div className='how-to--content'>
+                            <p>
+                                Перш за все, необхідно розмістити ваш корабель на дошці. Існують два способи розміщення кораблів.
+                            </p>
+                            <ul className='center'>
+                                <li className='highlight'>Перетягування</li>
+                                <li className='highlight'>Випадкове розміщення</li>
+                            </ul>
+                            <p className='highlight'>
+                                Правила розміщення кораблів
+                            </p>
+                            <ul>
+                                <li>Ви можете розмістити свій корабель горизонтально або вертикально. Діагональне розміщення заборонено.</li>
+                                <li>Ви не можете розмістити корабель на сусідню клітинку від вже розміщеного корабля.</li>
+                            </ul>
                         </div>
                     </div>
-                    <div className='how-to--arrangement'>
-                        <h1>GamePlay</h1>
-                        <div className='how-to--wrapper'>
-                            <div className='how-to--content'>
-                                <p>As the game starts player has to choose the coordinate to hit the computer's board. Next, the computer attacks the player board. It gets repeated till all the ship has sunk.</p>
-                                <p className='highlight'>ICONS in the Board</p>
-                                <ul className='how-to--ic-list'>
-                                    <li><FaSkullCrossbones className='how-to--ic green' /> - Indicates the part of the ship has hit.</li>
-                                    <li><GiCrossMark className='how-to--ic red' /> - Indicates that the place does not contains ship.</li>
-                                    <li><BsShieldFillX className='how-to--ic blue' /> - Indicates the Surrounding of the ship.</li>
-                                    <li><FaHeart className='how-to--ic red' /> - Indicates the life of the Ship.</li>
-                                </ul>
-                                <p className='highlight'>* Computer Moves is based on AI so it plays like a human.</p>
-                            </div>
-                            <img src={gameplay_img} alt='gameplay' className='how-to--img gameplay-img'/>
-                        </div>
-                    </div>
-                    <p className='rule-link-p'><a className='rule-link' href="https://en.wikipedia.org/wiki/Battleship_(game)" target="_blank" rel="noreferrer">Wikipedia</a></p>
                 </div>
+                <div className='how-to--arrangement'>
+                    <h1>Гра</h1>
+                    <div className='how-to--wrapper'>
+                        <div className='how-to--content'>
+                            <p>Після початку гри гравець повинен обрати координату, куди він хоче постріляти в дошку супротивника. Далі комп'ютер атакує дошку гравця. Це повторюється, поки всі кораблі не будуть потоплені.</p>
+                            <p className='highlight'>Позначки на дошці</p>
+                            <ul className='how-to--ic-list'>
+                                <li><FaSkullCrossbones className='how-to--ic green' /> - Вказує на частину корабля, яка була поранена.</li>
+                                <li><GiCrossMark className='how-to--ic red' /> - Вказує, що ця клітинка не містить корабля.</li>
+                                <li><BsShieldFillX className='how-to--ic blue' /> - Вказує на навколишню зону корабля.</li>
+                                <li><FaHeart className='how-to--ic red' /> - Вказує на життя корабля.</li>
+                            </ul>
+                        </div>
+                        <img src={gameplay_img} alt='gameplay' className='how-to--img gameplay-img'/>
+                    </div>
+                </div>
+                <p className='rule-link-p'><a className='rule-link' href="https://en.wikipedia.org/wiki/Battleship_(game)" target="_blank" rel="noreferrer">Вікіпедія</a></p>
+            </div>
             }
         </>
-    )
+    );
 }
 
 export default HowTo;

@@ -66,24 +66,22 @@ const Menu = () => {
         setIsEditing(prev => !prev);
     };
     const checkUserExists = () => {
-        axios
-            .head(`https://myseabattle.onrender.com/api/player`)
-            .then(() => {
-                axios
-                    .get(`https://myseabattle.onrender.com/api/player/name/${playerName}`)
-                    .then(response => {
-                        if (response.data.length > 0) {
-                            updateUserStats();
-                        } else {
-                            updateUserStats();
-                        }
-                    })
-                    .catch(error => {
-                        console.error(error);
-                        saveUserData(); // Виклик функції saveUserData незалежно від помилки
-                    });
-            })
+        setTimeout(() => {
+            axios.get(`https://myseabattle.onrender.com/api/player/name/${playerName}`)
+                .then(response => {
+                    if (response.data.length > 0) {
+                        updateUserStats();
+                    } else {
+                        updateUserStats();
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    saveUserData(); // Виклик функції saveUserData незалежно від помилки
+                });
+        }, 5000); // Затримка в 1000 мс (1 секунда)
     };
+
 
     const updateUserStats = () => {
         const userData = {
@@ -110,7 +108,7 @@ const Menu = () => {
             totalGames: gameData.totalGames
         };
 
-        axios.post('http://localhost:8080/api/player', userData)
+        axios.post('https://myseabattle.onrender.com/api/player', userData)
             .then(response => {
                 console.log(response.data);
             })
@@ -122,7 +120,7 @@ const Menu = () => {
     return (
         <div className='game-menu' ref={changeFocusRef}>
             <div className='player_name'>
-                <h1 className='player_name--greeting'>Welcome,</h1>
+                <h1 className='player_name--greeting'>Привіт,</h1>
                 <form onSubmit={toggleEditable}>
                     <input
                         type='text'
@@ -136,9 +134,9 @@ const Menu = () => {
                 </form>
                 {isEditing ? <TiTick className='player_name--ic' onClick={toggleEditable} /> : <FaEdit className='player_name--ic' onClick={toggleEditable} />}
             </div>
-            <div className='game-menu--option' onClick={startGame}><GiSwordsEmblem className="game-menu--option-ic" />START GAME</div>
-            <div className='game-menu--option' onClick={generateRandomBoard}><FaRandom className="game-menu--option-ic" />RANDOMIZE ARRANGEMENT</div>
-            <div className='game-menu--option' onClick={checkUserExists}>SAVE USER DATA</div>
+            <div className='game-menu--option' onClick={startGame}><GiSwordsEmblem className="game-menu--option-ic" />ПОЧАТИ ГРУ</div>
+            <div className='game-menu--option' onClick={generateRandomBoard}><FaRandom className="game-menu--option-ic" />ВИПАДКОВЕ РОЗМІЩЕННЯ</div>
+            <div className='game-menu--option' onClick={checkUserExists}>ЗБЕРЕГТИ КОРИСТУВАЧА</div>
         </div>
     );
 };

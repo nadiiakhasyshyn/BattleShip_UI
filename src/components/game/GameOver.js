@@ -16,11 +16,11 @@ const GameOver = () => {
         <>
             <div className='hide'> </div>
             <div className='gameover animate__animated animate__fadeIn'>
-                <h1>GameOver</h1>
-                <h1>{gameData.playerWon} has Won</h1>
+                <h1>Гра закінчена</h1>
+                <h1>Гравець {gameData.playerWon} переміг</h1>
                 <div className='gameover--options'>
-                    <div className='gameover--option' onClick={restartGame}>Restart</div>
-                    <div className='gameover--option' onClick={resetGame}>Main Menu</div>
+                    <div className='gameover--option' onClick={restartGame}>Нова гра</div>
+                    <div className='gameover--option' onClick={resetGame}>Головне меню</div>
                 </div>
             </div>
         </>

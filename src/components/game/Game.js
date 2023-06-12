@@ -62,10 +62,17 @@ const Game = () => {
             )}
             {gameData && gameData.playerWon !== '' && <GameOver />}
             <div className="stats">
-                <div>Victories: {gameData.victories || 0}</div>
-                <div>Defeats: {gameData.losses || 0}</div>
-                <div>Total Games: {gameData.totalGames || 0}</div>
+                <div className="stats-item">
+                    <span className="stats-label">Перемоги:</span> {gameData.victories || 0}
+                </div>
+                <div className="stats-item">
+                    <span className="stats-label">Поразки:</span> {gameData.losses || 0}
+                </div>
+                <div className="stats-item">
+                    <span className="stats-label"> Кількість ігор:</span> {gameData.totalGames || 0}
+                </div>
             </div>
+
             <HowTo setEnableOverflow={setEnableOverflow} />
             <Credit setEnableOverflow={setEnableOverflow} />
         </gameDataContext.Provider>

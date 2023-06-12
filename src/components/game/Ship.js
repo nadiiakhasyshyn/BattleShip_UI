@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FaMapPin } from 'react-icons/fa';
 import { AiOutlineRotateRight } from 'react-icons/ai';
 import { ACTIONS, players } from './reducer';
+import { FaAnchor } from 'react-icons/fa';
 
 const Ship = ({ shipLength, shipName, dispatch, orientationIsVertical=false, isDraggable=true}) => {
     const [isRotateVisible, setIsRotateVisible] = useState(false);
@@ -76,7 +77,7 @@ const Ship = ({ shipLength, shipName, dispatch, orientationIsVertical=false, isD
 const ShipPart = () => {
     return (
         <div className='game-ship--part'>
-            <FaMapPin className='game-ship__part-ic' />
+            <FaAnchor  className='game-ship__part-ic' />
         </div>
     )
 }

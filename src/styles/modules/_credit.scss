@@ -1,19 +1,4 @@
-.credit-btn{
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 10;
-    width: 25px;
-    height: 25px;
-    color: $green;
-    &:hover{
-        color: $pink;
-        cursor: pointer;
-    }
-    overflow: hidden;
-}
-
-.credit{
+.credit {
     position: fixed;
     padding: 1rem;
     top: 0;
@@ -21,57 +6,37 @@
     width: 100%;
     height: 100%;
     max-height: 100%;
-    background-color: rgb(0, 34, 51, 0.7);
+    background-color: rgba(0, 34, 51, 0.7);
     backdrop-filter: blur(2rem);
-    z-index: 5;
-    @include flexSetting(center, center, true);
-    &-list{
-        margin: 1rem 0;
-        color: $blue;
-        font-size: 1.2rem;
-        & li{
-            & a{
-                text-decoration: none;
-                color: $green;
-                &:hover{
-                    color: $pink;
-                }
-            }
-            &:hover{
-                color: $secondary-color;
-            }
-        }
-    }
-    &--ic{
-        width: 40px;
-        height: 40px;
-        fill: $green;
-        margin: 1rem;
-        &:hover{
-            fill: $pink;
-        }
-    }
-}
-
-
-.credit h2 {
-    margin-bottom: 10px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
 }
 
 .credit-table {
-    width: 100%;
+    width: 80%;
     border-collapse: collapse;
+    position: relative;
 }
 
 .credit-table th,
 .credit-table td {
     padding: 8px;
-    text-align: left;
+    text-align: center;
+}
+
+.credit-table th:first-child,
+.credit-table td:first-child {
+    width: 20%;
 }
 
 .credit-table th {
-    background-color: blue;
+    background-color: #4285f4;
+    color: #fff;
     font-weight: bold;
+    border-bottom: 2px solid #ddd;
 }
 
 .credit-table td {
@@ -84,19 +49,65 @@
 
 .credit-btn {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-size: 24px;
-    color: #333;
-    background-color: #fff;
+    top: 20px;
+    left: 20px;
+    font-size: 40px;
+    color: #e39b07;
     padding: 10px;
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 9999;
+    z-index: 9999999;
     transition: background-color 0.3s ease;
 }
 
 .credit-btn:hover {
     background-color: #f2f2f2;
+}
+
+.credit-table tbody {
+    display: block;
+    max-height: 650px;
+    overflow-y: auto;
+}
+
+.credit-table tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-bottom: 1px solid #ddd;
+}
+
+.credit-table tr:last-child {
+    border-bottom: none;
+}
+
+.credit-table th:not(:first-child),
+.credit-table td:not(:first-child) {
+    border-left: 1px solid #ddd;
+}
+
+.credit-table th:first-child,
+.credit-table td:first-child {
+    border-left: none;
+}
+
+.credit-table th:last-child,
+.credit-table td:last-child {
+    border-right: none;
+}
+
+.gold-icon {
+    color: gold;
+    margin-right: 5px;
+}
+
+.silver-icon {
+    color: silver;
+    margin-right: 5px;
+}
+
+.bronze-icon {
+    color: #cd7f32;
+    margin-right: 5px;
 }

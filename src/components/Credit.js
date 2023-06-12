@@ -10,7 +10,7 @@ const Credit = ({ setEnableOverflow }) => {
         setEnableOverflow(toDisplay);
 
         if (toDisplay) {
-            axios.get('http://localhost:8080/api/player')
+            axios.get('https://myseabattle.onrender.com/api/player')
                 .then(response => {
                     setUserData(response.data);
                 })
@@ -21,7 +21,7 @@ const Credit = ({ setEnableOverflow }) => {
     }, [toDisplay, setEnableOverflow]);
 
     const fetchData = () => {
-        axios.get('http://localhost:8080/api/player')
+        axios.get('https://myseabattle.onrender.com/api/player')
             .then(response => {
                 setUserData(response.data);
             })

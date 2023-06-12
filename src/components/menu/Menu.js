@@ -67,10 +67,10 @@ const Menu = () => {
     };
     const checkUserExists = () => {
         axios
-            .head(`http://localhost:8080/api/player`)
+            .head(`https://myseabattle.onrender.com/api/player`)
             .then(() => {
                 axios
-                    .get(`http://localhost:8080/api/player/name/${playerName}`)
+                    .get(`https://myseabattle.onrender.com/api/player/name/${playerName}`)
                     .then(response => {
                         if (response.data.length > 0) {
                             updateUserStats();
@@ -93,7 +93,7 @@ const Menu = () => {
             totalGames: gameData.totalGames
         };
 
-        axios.put(`http://localhost:8080/api/player/name/${playerName}`, userData)
+        axios.put(`https://myseabattle.onrender.com/api/player/name/${playerName}`, userData)
             .then(response => {
                 console.log(response.data);
             })

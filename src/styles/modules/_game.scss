@@ -1,0 +1,300 @@
+$grid-size: clamp(30px, 6vw, 50px);
+$board-color: rgb(11, 209, 44);
+$grid-color: $primary-color;
+$grid-border: 1px solid rgb(11, 209, 44);
+$ship-part-color: $pink;
+$highlight-positive: $green;
+$highlight-negative: $negative;
+
+.game{
+    margin: 1rem;
+    @include flexSetting(space-evenly, center);
+    flex-wrap: wrap;
+
+    &-menu-board{
+        @include flexSetting(space-evenly, center);
+    }
+
+    &-menu{
+        margin: 1rem 0;
+        &--option{
+            @include flexSetting(center, center);
+            margin: 2.4rem 0;
+            user-select: none;
+            font-size: clamp(.8rem, 4vw, 1.4rem);
+            cursor: pointer;
+            &:hover{
+                background-color: #4158D0;
+                background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+                color: $secondary-color;
+                background-clip: text;
+                text-fill-color: transparent;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                animation: flow 1s linear infinite;
+            }
+            &-ic{
+                margin-right: .5rem;
+                fill: $ship-part-color;
+            }
+        }
+        & .player_name{
+            @include flexSetting(center, center);
+            &--greeting{
+                font-size: clamp(1rem, 4vw, 2rem);
+            }
+            &--value{
+                margin: 0 0 0 .5rem;
+                color: $green;
+                background-color: transparent;
+                border: none;
+                border-bottom: 1px solid transparent;
+                outline: none;
+                font-size: clamp(1rem, 4vw, 2rem);
+                width: clamp(60px, 8vw, 120px);
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                &:focus{
+                    border-color: $blue;
+                }
+            }
+            &--ic{
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    & .ship-container{
+        position: relative;
+        margin: .5rem;
+        padding: .2rem;
+        & .game-ship--rotate{
+            background-color: $primary-color;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+
+            &:hover{
+                fill: $blue;
+            }
+        }
+    }
+
+    &-ships{
+        @include flexSetting(space-evenly, center, true);
+        margin: 0 0 0 clamp(1rem, 4vw, 5rem);
+        width: clamp(300px, 50vw, 470px);
+        &--group{
+            @include flexSetting(flex-start, center);
+            width: fit-content;
+        }
+    }
+
+    & .game-ship{
+        @include flexSetting(flex-start, center);
+        &.vertical{
+            flex-direction: column;
+        }
+        margin: clamp(.3rem, 2vw, 1rem);
+        cursor: grab;
+        background-color: $primary-color;
+        border: $grid-border;
+        &--part{
+            width: $grid-size;
+            height: $grid-size;
+            padding: .2rem;
+            border: $grid-border;
+        }
+        &__part-ic{
+            width: 100%;
+            height: 100%;
+            fill: $ship-part-color;
+        }
+    }
+    &-board{
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        --total-grid-width: calc(#{$grid-size} * 10);
+        $board-width: calc(var(--total-grid-width) + 11);
+        width: $board-width;
+        // gap: 1px;
+        padding: 2px;
+        border: $grid-border;
+        margin: .5rem 0;
+        &--grid{
+            width: $grid-size;
+            height: $grid-size;
+            position: relative;
+            border: none;
+            & .grid-ic, & .grid-ic--cnt{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            & .grid-ic--cnt{
+                width: $grid-size;
+                height: $grid-size;
+                background-color: rgba(0, 34, 51, 0.6);
+                @include flexSetting(center, center);
+                z-index: 3;
+            }
+            & .grid-ic--pointer{
+                z-index: -1;
+                // fill: $negative;
+            }
+            & .grid-ic--fail, & .grid-ic--shield, & .grid-ic--pass{
+                width: calc($grid-size - 25px);
+                height: calc($grid-size - 25px);
+            }
+            & .grid-ic--crosshair{
+                width: calc($grid-size - 10px);
+                height: calc($grid-size - 10px);
+                display: none;
+            }
+            & .grid-ic--fail{
+                fill: red;
+            }
+            & .grid-ic--shield{
+                fill: $blue;
+            }
+            & .grid-ic--pass{
+                fill: $green;
+                z-index: 3;
+            }
+            & .ship-container{
+                margin: 0rem;
+                padding: 0rem;
+            }
+            & .game-ship{
+                margin: 0;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                border: none;
+                z-index: 2;
+                &--part{
+                    background-color: rgba(0, 162, 255, 0.253);
+                    border: none;
+                }
+            }
+        }
+        &--grid.highlight-positive{
+            background-color: $highlight-positive;
+        }
+        &--grid.highlight-negative{
+            background-color: $highlight-negative;
+        }
+    }
+
+    .life{
+        @include flexSetting(center, center, true);
+        &-ship-group{
+            @include flexSetting(center, center);
+            .life-ship{
+                @include flexSetting(center, center);
+                margin: 1rem .5rem;
+                .life-part--ic{
+                    margin: 0 .2rem;
+                    fill: red;
+                }
+                .life-part--ic.dead{
+                    fill: $negative;
+                }
+            }
+        }
+    }
+}
+
+.game[data-status='true']{
+    & .game-ship{
+        cursor: default;
+    }
+}
+
+.game{
+    & .opponent-board.active{
+        & .game-board--grid{
+            &:hover .grid-ic--crosshair{
+                display: initial;
+                animation: flash 2s infinite;
+                // background-color: $secondary-color;
+            }
+        }
+    }
+    & .inactive{
+        & .game-board--grid{
+            & .grid-ic--pointer{
+                fill: $negative;
+            }
+            & .grid-ic--crosshair{
+                display: none;
+            }
+        }
+    }   
+}
+
+@keyframes flow {
+    0%{
+        background-image: linear-gradient(0deg, #f093fb 0%, #f5576c 100%);
+
+    }
+
+    25%{
+        background-image: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+    }
+    
+    50%{
+        background-image: linear-gradient(180deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    75%{
+        background-image: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    100%{
+        background-image: linear-gradient(0deg, #f093fb 0%, #f5576c 100%);
+    }
+}
+
+@media (max-width: 1430px){
+    .game{
+        flex-direction: column-reverse;
+    }
+}
+
+@media (max-width: 1040px){
+    .game{
+        flex-direction: column;
+    }
+    .game-menu-board{
+        @include flexSetting(space-evenly, center, true);
+    }
+}
+@media (max-width: 570px){
+    .game{
+        &-board{
+            &--grid{
+                & .grid-ic--fail, & .grid-ic--shield, & .grid-ic--pass{
+                    width: calc($grid-size - 15px);
+                    height: calc($grid-size - 15px);
+                }
+                & .grid-ic--crosshair{
+                    width: calc($grid-size - 10px);
+                    height: calc($grid-size - 10px);
+                    display: none;
+                }
+                & .grid-ic--pointer{
+                    width: calc($grid-size - 20px);
+                    height: calc($grid-size - 20px);
+                }
+            }
+        }
+    }
+}

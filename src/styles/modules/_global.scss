@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+*, *::after, *::before{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+$primary-color: #002233;
+$secondary-color: #FFF;
+$blue: #0066FF;
+$green: #00FF94;
+$pink: #ef476f;
+$positive: $green;
+$negative: rgb(189, 167, 167);
+
+$custom-font: 'Montserrat', sans-serif;
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: $primary-color;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $green;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $pink;
+}
+
+html{
+    background-color: $primary-color;
+    color: $secondary-color;
+    font-family: $custom-font;
+    overflow-x: hidden;
+}
+
+.cursor-grabbing{
+  cursor: grabbing !important;
+}
+
+@mixin flexSetting($justify, $align, $isColumn: false) {
+    display: flex;
+    
+    @if $isColumn {
+      flex-direction: column;
+    }
+  
+    justify-content: $justify;
+    align-items: $align;
+  }
+  
+.none{
+  display: none !important;
+}
+
+.no-overflow{
+  overflow: hidden;
+}
+
+.blue{
+  color: $blue;
+}
+
+.red{
+  color: red;
+}
+
+.green{
+  color: $green;
+}
